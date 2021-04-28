@@ -20,16 +20,19 @@ spec:
           command:
             - sh
             - '-c'
-            - 'set -x ; cd /data ; wget ${URL}'
+            - 'set -x ; cd /downloads ; wget ${URL}'
           env:
             -
               name: URL
-              value: https://raw.githubusercontent.com/Viviane-maker/santander-anagrams/docker/data/words.txt
+              valueFrom:
+                secretKeyRef:
+                  key: URL
+                  name: anagrams-secret
           image: busybox
           name: anagrams-wget
           volumeMounts:
             -
-              mountPath: /data
+              mountPath: /downloads
               name: anagrams-volume
               readOnly: false
       restartPolicy: Never
