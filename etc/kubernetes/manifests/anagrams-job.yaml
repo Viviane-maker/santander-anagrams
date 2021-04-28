@@ -14,6 +14,9 @@ spec:
               mountPath: /data
               name: anagrams-volume
               readOnly: true
+      imagePullSecrets:
+        -
+          name: docker-login
       initContainers:
         -
           args: []
