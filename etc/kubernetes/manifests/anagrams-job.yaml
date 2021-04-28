@@ -16,11 +16,27 @@ spec:
               readOnly: true
       initContainers:
         -
-          args:
+          args: []
           command:
+            - sh
+            - '-c'
+            - 'set -x ; cd /data ; wget ${URL}'
           env:
-          image:
-          name:
+            -
+              name: URL
+              value: https://raw.githubusercontent.com/Viviane-maker/santander-anagrams/docker/data/words.txt
+          image: busybox
+          name: anagrams-wget
           volumeMounts:
-      restartPolicy:
+            -
+              mountPath: /data
+              name: anagrams-volume
+              readOnly: false
+      restartPolicy: Never
       volumes:
+        -
+          name: anagrams-volume
+          persistentVolumeClaim:
+            claimName: anagrams-pvc
+            readOnly: false
+          
