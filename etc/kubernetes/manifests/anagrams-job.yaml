@@ -23,7 +23,7 @@ spec:
           command:
             - sh
             - '-c'
-            - 'set -x ; cd /downloads ; wget ${URL}'
+            - 'set -x ; cd /downloads ; wget -r ${URL}'
           env:
             -
               name: URL
