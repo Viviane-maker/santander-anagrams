@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: anagrams-job
+spec:
+  template:
+    spec:
+      containers:
+        -
+          image: vivianemaker1/santander-anagrams:latest
+          name: anagrams-container
+          volumeMounts:
+            -
+              mountPath: /data
+              name: anagrams-volume
+              readOnly: true
+      initContainers:
+        -
+          args:
+          command:
+          env:
+          image:
+          name:
+          volumeMounts:
+      restartPolicy:
+      volumes:
